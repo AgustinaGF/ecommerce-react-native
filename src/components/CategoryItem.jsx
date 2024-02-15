@@ -1,4 +1,4 @@
-import {Pressable, StyleSheet,Text, View} from 'react-native'
+import {Pressable, StyleSheet,Text,} from 'react-native'
 import Card from './Card';
 
 function CategoryItem({category, setCategorySelected}){
@@ -16,6 +16,7 @@ export default CategoryItem;
 const styles = StyleSheet.create({
     text:{
         fontSize:25,
-        fontFamily:'InterBold'
-    }
+        fontFamily:"InterRegular"
+    },
+   
 })

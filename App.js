@@ -2,40 +2,47 @@ import { StatusBar } from "expo-status-bar";
 import Constants from "expo-constants";
 import Home from "./screens/Home";
 import ItemListCategories from "./screens/ItemListCategories";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View, SafeAreaView, Platform } from "react-native";
 import { useState } from "react";
 import { useFonts } from "expo-font";
 import { fonts } from "./src/global/fonts";
+import ItemDetail from "./screens/ItemDetail";
 
 export default function App() {
-  const [categorySelected, setCategorySelected] = useState("");
+	const [categorySelected, setCategorySelected] = useState("");
+	const [productDetailId, setProductDetailId] = useState(0);
 
-  const [fontsLoaded] = useFonts(fonts);
+	const [fontsLoaded] = useFonts(fonts);
 
-  if (!fontsLoaded) {
-    return null;
-  }
+	if (!fontsLoaded) {
+		return null;
+	}
 
-  return (
-    <>
-      {categorySelected ? (
-        <ItemListCategories />
-      ) : (
-        <Home setCategorySelected={setCategorySelected} />
-      )}
-    </>
-  );
+	return (
+		<>
+			<SafeAreaView style={styles.container}>
+				<StatusBar style="auto" />
+				{productDetailId ? (
+					<ItemDetail productDetailId={productDetailId} />
+				) : categorySelected ? (
+					<ItemListCategories
+						setCategorySelected={setCategorySelected}
+						category={categorySelected}
+						setProductDetailId={setProductDetailId}
+					/>
+				) : (
+					<Home setCategorySelected={setCategorySelected} />
+				)}
+			</SafeAreaView>
+		</>
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: Constants.StatusBarHeight,
-    flex: 1,
-    backgroundColor: "#fff",
-    paddingHorizontal: 14,
-  },
-  product: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
+	container: {
+		flex: 1,
+		backgroundColor: "#ededed",
+		alignItems: "center",
+		paddingTop: Platform.OS === "android" ? Constants.statusBarHeight : 0,
+	},
 });
