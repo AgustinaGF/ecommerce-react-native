@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
-import allCartItems from "../src/data/cart.json";
+import allCartItems from "../data/cart.json";
 
-import CartItem from "../src/components/CartItem";
+import CartItem from "../components/CartItem";
 
 export default function Cart() {
 	const [cartItems, setCartItems] = useState([]);

@@ -1,7 +1,6 @@
 import { View, StyleSheet } from "react-native";
-import Header from "../src/components/Header";
 
-import Categories from "../src/components/Categories";
+import Categories from "../components/Categories";
 
 function Home({ navigation }) {
 	return (

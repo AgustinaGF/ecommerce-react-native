@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import Home from "../../screens/Home";
-import ItemDetail from "../../screens/ItemDetail";
-import ItemListCategories from "../../screens/ItemListCategories";
+import Home from "../screens/Home";
+import ItemDetail from "../screens/ItemDetail";
+import ItemListCategories from "../screens/ItemListCategories";
 import Header from "../components/Header";
 
 const ShopStack = () => {

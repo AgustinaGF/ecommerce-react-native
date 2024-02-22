@@ -1,9 +1,9 @@
 import { Text, View, FlatList, StyleSheet, Pressable } from "react-native";
-import allProducts from "./../src/data/products.json";
-import ProductItem from "../src/components/ProductItem";
-import Search from "../src/components/Search";
+import allProducts from "../data/products.json";
+import ProductItem from "../components/ProductItem";
+import Search from "../components/Search";
 import { useEffect, useState } from "react";
-import { colors } from "../src/global/color";
+import { colors } from "../global/color";
 
 function ItemListCategories({ navigation, route }) {
 	const [products, setProducts] = useState([]);
