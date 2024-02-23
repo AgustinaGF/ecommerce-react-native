@@ -1,13 +1,13 @@
 import { Text, View, FlatList, StyleSheet } from "react-native";
-import categories from "../data/categories.json";
 import CategoryItem from "./CategoryItem";
 import { colors } from "../global/color";
 import Counter from "./Counter";
+import { useSelector } from "react-redux";
 
-function Categories({ navigation }) {
+const Categories = ({ navigation }) => {
+	const categories = useSelector((state) => state.shopReducer.value.categories);
 	return (
 		<View style={styles.container}>
-			<Counter />
 			<FlatList
 				data={categories}
 				renderItem={({ item }) => (
@@ -17,7 +17,7 @@ function Categories({ navigation }) {
 			/>
 		</View>
 	);
-}
+};
 
 export default Categories;
 

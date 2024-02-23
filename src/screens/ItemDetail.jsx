@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import allProducts from "../data/products.json";
 import { colors } from "../global/color";
+import Counter from "../components/Counter";
 
 const ItemDetail = ({ navigation, route }) => {
 	const [product, setProduct] = useState(null);
@@ -23,10 +24,14 @@ const ItemDetail = ({ navigation, route }) => {
 					<Text style={styles.title}>{product.title}</Text>
 					<Text style={styles.descriptionText}>{product.description}</Text>
 					<Text style={styles.descriptionTextPrice}>${product.price}</Text>
+
 					<View style={styles.buttonContainer}>
-						<Pressable style={styles.buy}>
-							<Text style={styles.buyText}>Buy now</Text>
-						</Pressable>
+						<Counter />
+						<View>
+							<Pressable style={styles.buy}>
+								<Text style={styles.buyText}>Buy now</Text>
+							</Pressable>
+						</View>
 					</View>
 				</View>
 			</View>
