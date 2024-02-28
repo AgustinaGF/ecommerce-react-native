@@ -3,13 +3,15 @@ import CategoryItem from "./CategoryItem";
 import { colors } from "../global/color";
 import Counter from "./Counter";
 import { useSelector } from "react-redux";
+import { useGetCategoriesQuery } from "../services/shopServices";
 
 const Categories = ({ navigation }) => {
-	const categories = useSelector((state) => state.shopReducer.value.categories);
+	// const categories = useSelector((state) => state.shopReducer.value.categories);
+	const { data, isLoading, error } = useGetCategoriesQuery();
 	return (
 		<View style={styles.container}>
 			<FlatList
-				data={categories}
+				data={data}
 				renderItem={({ item }) => (
 					<CategoryItem navigation={navigation} category={item} />
 				)}

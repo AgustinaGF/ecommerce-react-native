@@ -4,14 +4,20 @@ import Search from "../components/Search";
 import { useEffect, useState } from "react";
 import { colors } from "../global/color";
 import { useSelector } from "react-redux";
+import { useGetProductsQuery } from "../services/shopServices";
 
 function ItemListCategories({ navigation, route }) {
 	const [products, setProducts] = useState([]);
 	const [keyword, setKeyword] = useState("");
-
-	const productsFilteredByCategory = useSelector(
-		(state) => state.shopReducer.value.productsFilteredByCategory
+	const category = useSelector(
+		(state) => state.shopReducer.value.categorySeleted
 	);
+
+	const {
+		data: productsFilteredByCategory,
+		isLoading,
+		error,
+	} = useGetProductsQuery(category);
 
 	useEffect(() => {
 		const productsFiltered = productsFilteredByCategory.filter((product) =>
