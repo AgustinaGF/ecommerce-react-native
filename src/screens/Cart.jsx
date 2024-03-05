@@ -3,27 +3,30 @@ import React, { useEffect, useState } from "react";
 import allCartItems from "../data/cart.json";
 
 import CartItem from "../components/CartItem";
+import { usePostOrderMutation } from "../services/shopServices";
+import { useSelector } from "react-redux";
 
 export default function Cart() {
-	const [cartItems, setCartItems] = useState([]);
-	const [total, setTotal] = useState(0);
+	const cartItems = useSelector((state) => state.cartReducer.value.items);
 
-	useEffect(() => {
-		const total = allCartItems.reduce(
-			(acc, currentItem) => (acc += currentItem.quantity * currentItem.price),
-			0
-		);
-		setCartItems(allCartItems);
-		setTotal(total);
-	});
+	const total = useSelector((state) => state.cartReducer.value.total);
+
+	const [triggerPost, result] = usePostOrderMutation();
+
 	return (
 		<View>
-			<FlatList
-				data={cartItems}
-				renderItem={({ item }) => <CartItem item={item} />}
-				keyExtractor={(cartItem) => cartItem.id}
-			/>
-			<Text>Total:${total}</Text>
+			{cartItems.length > 0 ? (
+				<>
+					<FlatList
+						data={cartItems}
+						renderItem={({ item }) => <CartItem item={item} />}
+						keyExtractor={(cartItem) => cartItem.id}
+					/>
+					<Text>Total:${total}</Text>
+				</>
+			) : (
+				<Text>No hay Productos Agregados</Text>
+			)}
 		</View>
 	);
 }

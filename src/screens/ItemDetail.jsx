@@ -3,10 +3,19 @@ import React, { useEffect, useState } from "react";
 import allProducts from "../data/products.json";
 import { colors } from "../global/color";
 import Counter from "../components/Counter";
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/shop/cartSlice";
 
 const ItemDetail = ({ navigation, route }) => {
 	const [product, setProduct] = useState(null);
 	const { id } = route.params;
+
+	const dispatch = useDispatch();
+
+	const onAddCart = () => {
+		dispatch(addItem({ ...product, quantity: 1 }));
+	};
+
 	useEffect(() => {
 		const productFinded = allProducts.find((product) => product.id === id);
 		setProduct(productFinded);
@@ -28,7 +37,7 @@ const ItemDetail = ({ navigation, route }) => {
 					<View style={styles.buttonContainer}>
 						<Counter />
 						<View>
-							<Pressable style={styles.buy}>
+							<Pressable style={styles.buy} onPress={onAddCart}>
 								<Text style={styles.buyText}>Buy now</Text>
 							</Pressable>
 						</View>
