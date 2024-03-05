@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text } from "react-native";
 import Card from "./Card";
 import { colors } from "../global/color";
 import { useDispatch } from "react-redux";
-import { setCategorySeleted } from "../features/shop/shopSlice";
+import { setCategorySelected } from "../features/shop/shopSlice";
 
 function CategoryItem({ category, navigation }) {
 	const dispatch = useDispatch();
@@ -10,7 +10,7 @@ function CategoryItem({ category, navigation }) {
 		// <Pressable onPress={}>
 		<Pressable
 			onPress={() => {
-				dispatch(setCategorySeleted(category));
+				dispatch(setCategorySelected(category));
 				navigation.navigate("ItemListCategories", { category });
 			}}
 		>

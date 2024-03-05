@@ -1,29 +1,33 @@
-import { Text, View, FlatList, StyleSheet, Pressable } from "react-native";
+import { useEffect, useState } from "react";
+import { View, FlatList, Text, StyleSheet, Pressable } from "react-native";
 import ProductItem from "../components/ProductItem";
 import Search from "../components/Search";
-import { useEffect, useState } from "react";
 import { colors } from "../global/color";
 import { useSelector } from "react-redux";
-import { useGetProductsQuery } from "../services/shopServices";
+import { useGetProductsByCategoryQuery } from "../services/shopServices";
 
-function ItemListCategories({ navigation, route }) {
+function ItemListCategories({ navigation }) {
 	const [products, setProducts] = useState([]);
 	const [keyword, setKeyword] = useState("");
-	const category = useSelector(
-		(state) => state.shopReducer.value.categorySeleted
-	);
 
+	const category = useSelector(
+		(state) => state.shopReducer.value.categorySelected
+	);
 	const {
 		data: productsFilteredByCategory,
 		isLoading,
 		error,
-	} = useGetProductsQuery(category);
+	} = useGetProductsByCategoryQuery(category);
 
 	useEffect(() => {
-		const productsFiltered = productsFilteredByCategory.filter((product) =>
-			product.title.includes(keyword)
-		);
-		setProducts(productsFiltered);
+		console.log(productsFilteredByCategory);
+		if (productsFilteredByCategory) {
+			const productsRaw = Object.values(productsFilteredByCategory);
+			const productsFiltered = productsRaw.filter((product) =>
+				product.title.includes(keyword)
+			);
+			setProducts(productsFiltered);
+		}
 	}, [productsFilteredByCategory, keyword]);
 
 	return (
