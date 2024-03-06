@@ -21,33 +21,29 @@ const ItemDetail = ({ navigation, route }) => {
 		setProduct(productFinded);
 	}, [id]);
 
-	return product ? (
+	return (
 		<View style={styles.main}>
-			<View style={styles.container}>
-				<Image
-					source={{ uri: product.images[0] }}
-					style={styles.image}
-					resizeMode="cover"
-				/>
-				<View style={styles.textContainer}>
-					<Text style={styles.title}>{product.title}</Text>
-					<Text style={styles.descriptionText}>{product.description}</Text>
-					<Text style={styles.descriptionTextPrice}>${product.price}</Text>
-
-					<View style={styles.buttonContainer}>
-						<Counter />
-						<View>
-							<Pressable style={styles.buy} onPress={onAddCart}>
-								<Text style={styles.buyText}>Buy now</Text>
-							</Pressable>
-						</View>
+			{product ? (
+				<View style={styles.container}>
+					<Image
+						source={{ uri: product.images[0] }}
+						style={styles.image}
+						resizeMode="cover"
+					/>
+					<View style={styles.textContainer}>
+						<Text style={styles.descriptionText}>{product.title}</Text>
+						<Text style={styles.descriptionText}>{product.description}</Text>
+						<Text style={styles.descriptionTextPrice}>${product.price}</Text>
+						<Pressable style={styles.buy} onPress={onAddCart}>
+							<Text style={styles.buyText}>Add to cart</Text>
+						</Pressable>
 					</View>
 				</View>
-			</View>
-		</View>
-	) : (
-		<View>
-			<Text>Cargando..</Text>
+			) : (
+				<View>
+					<Text>Cargando...</Text>
+				</View>
+			)}
 		</View>
 	);
 };

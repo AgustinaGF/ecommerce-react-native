@@ -20,7 +20,6 @@ function ItemListCategories({ navigation }) {
 	} = useGetProductsByCategoryQuery(category);
 
 	useEffect(() => {
-		console.log(productsFilteredByCategory);
 		if (productsFilteredByCategory) {
 			const productsRaw = Object.values(productsFilteredByCategory);
 			const productsFiltered = productsRaw.filter((product) =>

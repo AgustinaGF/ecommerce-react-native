@@ -4,6 +4,7 @@ import cartReducer from "../features/shop/cartSlice";
 import shopReducer from "../features/shop/shopSlice";
 import { shopApi } from "../services/shopServices";
 import { setupListeners } from "@reduxjs/toolkit/query";
+import { authApi } from "../services/authServices";
 
 export default configureStore({
 	reducer: {
@@ -11,9 +12,12 @@ export default configureStore({
 		shopReducer,
 		cartReducer,
 		[shopApi.reducerPath]: shopApi.reducer,
+		[authApi.reducerPath]: authApi.reducer,
 	},
 	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware().concat(shopApi.middleware),
+		getDefaultMiddleware()
+			.concat(shopApi.middleware)
+			.concat(authApi.middleware),
 });
 
 setupListeners(configureStore.dispatch);

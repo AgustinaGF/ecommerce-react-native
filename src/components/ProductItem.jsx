@@ -34,7 +34,11 @@ const ProductItem = ({ product, navigation }) => {
 				<Text style={width < 400 ? styles.textMin : styles.text}>
 					{product.title}
 				</Text>
-				<Image style={styles.image} source={{ uri: product.images[0] }} />
+				<Image
+					style={styles.image}
+					resizeMode="cover"
+					source={{ uri: product.thumbnail }}
+				/>
 			</Card>
 		</Pressable>
 	);
