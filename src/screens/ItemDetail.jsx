@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import allProducts from "../data/products.json";
 import { colors } from "../global/color";
-import Counter from "../components/Counter";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/shop/cartSlice";
 
