@@ -1,9 +1,16 @@
 import { Pressable, StyleSheet, Text, View, Image } from "react-native";
 import React, { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
+import { useDispatch, useSelector } from "react-redux";
+import { setCameraImage } from "../features/auth/authSlice";
+import { usePostProfileImageMutation } from "../services/shopServices";
 
-const ImageSelector = () => {
+const ImageSelector = ({ navigation }) => {
 	const [image, setImage] = useState(null);
+	const { localId } = useSelector((state) => state.authReducer.value);
+	const [triggerSaveProfileImage, result] = usePostProfileImageMutation();
+
+	const dispatch = useDispatch();
 
 	const verifyCameraPermissions = async () => {
 		const { granted } = await ImagePicker.requestCameraPermissionsAsync();
@@ -30,6 +37,11 @@ const ImageSelector = () => {
 		}
 	};
 
+	const confirmImage = () => {
+		dispatch(setCameraImage(image));
+		triggerSaveProfileImage({ localId, image });
+		navigation.goBack();
+	};
 	return (
 		<View style={styles.container}>
 			{image ? (
@@ -38,7 +50,7 @@ const ImageSelector = () => {
 					<Pressable onPress={pickImage}>
 						<Text>Take another photo</Text>
 					</Pressable>
-					<Pressable>
+					<Pressable onPress={confirmImage}>
 						<Text>Confirm photo</Text>
 					</Pressable>
 				</>
