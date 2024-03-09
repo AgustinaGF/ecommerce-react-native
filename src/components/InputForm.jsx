@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
 	subtitle: {
 		width: "90%",
 		fontSize: 16,
-		fontFamily: "InterRegular",
+		fontFamily: "InterBold",
+		color: colors.color_1,
 	},
 	error: {
 		fontSize: 16,
