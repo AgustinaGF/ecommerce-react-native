@@ -4,19 +4,28 @@ import TabNavigator from "./TabNavigator";
 import AuthStack from "./AuthStack";
 import { NavigationContainer } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { useGetProfileImageQuery } from "../services/shopServices";
+import {
+	useGetProfileImageQuery,
+	useGetUserLocationQuery,
+} from "../services/shopServices";
 import { setProfileImage } from "../features/auth/authSlice";
 
 const MainNavigator = () => {
 	const { user, localId } = useSelector((state) => state.authReducer.value);
 	const { data, error, isLoading } = useGetProfileImageQuery(localId);
+	const { data: location } = useGetUserLocationQuery(localId);
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (data) {
 			dispatch(setProfileImage(data.image));
 		}
-	}, [data]);
+		if (location) {
+			dispatch(setUserLocation(location));
+		}
+	}, [data, location]);
+
 	return (
 		<NavigationContainer>
 			{user ? <TabNavigator /> : <AuthStack />}
