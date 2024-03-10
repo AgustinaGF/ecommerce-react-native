@@ -34,6 +34,17 @@ export const shopApi = createApi({
 				},
 			}),
 		}),
+		postUserLocation: builder.mutation({
+			query: ({ location, localId }) => ({
+				url: `location/${localId}.json`,
+				method: "PUT",
+				body: {
+					latitude: location.latitude,
+					longitude: location.longitude,
+					address: location.address,
+				},
+			}),
+		}),
 	}),
 });
 
@@ -43,4 +54,5 @@ export const {
 	usePostOrderMutation,
 	useGetProfileImageQuery,
 	usePostProfileImageMutation,
+	usePostUserLocationMutation,
 } = shopApi;

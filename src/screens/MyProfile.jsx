@@ -9,7 +9,7 @@ const MyProfile = ({ navigation }) => {
 		<View style={styles.container}>
 			{image ? (
 				<Image
-					source={{ uri: image }}
+					source={{ uri: profileImage || imageCamera }}
 					resizeMode="cover"
 					style={styles.image}
 				/>
@@ -27,6 +27,12 @@ const MyProfile = ({ navigation }) => {
 				onPress={() => navigation.navigate("Image Selector")}
 			>
 				<Text style={styles.text}>Add profile picture</Text>
+			</Pressable>
+			<Pressable
+				style={styles.button}
+				onPress={() => navigation.navigate("Location Selector")}
+			>
+				<Text style={styles.text}>My adresses</Text>
 			</Pressable>
 		</View>
 	);

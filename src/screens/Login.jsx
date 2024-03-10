@@ -29,7 +29,7 @@ const Login = ({ navigation }) => {
 			dispatch(setUser(result));
 		}
 		if (result.error) {
-			if (result.error.data.error.code == 400) {
+			if (result.error.data?.error.code == 400) {
 				setNotLogger("incorrect username or password");
 			}
 		}
