@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	View,
+	Pressable,
+	ActivityIndicator,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import InputForm from "../components/InputForm";
 import { useSignUpMutation } from "../services/authServices";
@@ -7,11 +13,10 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../features/auth/authSlice";
 import { signupSchema } from "../validations/signupSchema";
 import { colors } from "../global/color";
-import { Link } from "@react-navigation/native";
 
 // 1.16
 
-const Signup = () => {
+const Signup = ({ navigation }) => {
 	const dispatch = useDispatch();
 
 	const [email, setEmail] = useState("");
@@ -69,7 +74,11 @@ const Signup = () => {
 				error={errorConfirmPassword}
 				onChange={setConfirmPassword}
 			/>
-			<SubmitButton title={"Register"} onPress={onSubmit} />
+			{result.isLoading ? (
+				<ActivityIndicator size="large" color="#0000ff" />
+			) : (
+				<SubmitButton title={"Register"} onPress={onSubmit} />
+			)}
 			<Text style={styles.account}>Already have an account? </Text>
 			<Pressable onPress={() => navigation.navigate("Login")}>
 				<Text style={styles.login}>Login</Text>
