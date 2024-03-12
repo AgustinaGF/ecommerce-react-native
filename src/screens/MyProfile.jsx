@@ -4,10 +4,13 @@ import { colors } from "../global/color";
 import { useSelector } from "react-redux";
 
 const MyProfile = ({ navigation }) => {
-	const image = useSelector((state) => state.authReducer.value.imageCamera);
+	const { profileImage, imageCamera } = useSelector(
+		(state) => state.authReducer.value
+	);
+
 	return (
 		<View style={styles.container}>
-			{image ? (
+			{profileImage || imageCamera ? (
 				<Image
 					source={{ uri: profileImage || imageCamera }}
 					resizeMode="cover"
@@ -30,7 +33,7 @@ const MyProfile = ({ navigation }) => {
 			</Pressable>
 			<Pressable
 				style={styles.button}
-				onPress={() => navigation.navigate("Location Selector")}
+				onPress={() => navigation.navigate("My Location")}
 			>
 				<Text style={styles.text}>My adresses</Text>
 			</Pressable>

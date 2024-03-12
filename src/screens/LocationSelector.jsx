@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	View,
+	Pressable,
+	ActivityIndicator,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import { colors } from "../global/color";
 import * as Location from "expo-location";
@@ -60,6 +66,7 @@ const LocationSelector = () => {
 	return (
 		<View style={styles.container}>
 			<Text>My Adresses</Text>
+
 			{location.latitude ? (
 				<View style={styles.noLocationContainer}>
 					<Text>

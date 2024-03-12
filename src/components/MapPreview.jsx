@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, ActivityIndicator } from "react-native";
 import React from "react";
 import { googleApi } from "../firebase/googleApi";
 
@@ -10,11 +10,15 @@ const MapPreview = ({ location }) => {
 
 	return (
 		<View style={styles.mapPreview}>
-			<Image
-				style={styles.mapImage}
-				source={{ uri: mapPreviewUrl }}
-				resizeMethod="cover"
-			/>
+			{location ? (
+				<Image
+					style={styles.mapImage}
+					source={{ uri: mapPreviewUrl }}
+					resizeMode="cover"
+				/>
+			) : (
+				<ActivityIndicator size="large" color="red" />
+			)}
 		</View>
 	);
 };

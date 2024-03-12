@@ -9,6 +9,7 @@ import {
 	useGetUserLocationQuery,
 } from "../services/shopServices";
 import { setProfileImage } from "../features/auth/authSlice";
+import { setUserLocation } from "../features/auth/authSlice";
 
 const MainNavigator = () => {
 	const { user, localId } = useSelector((state) => state.authReducer.value);

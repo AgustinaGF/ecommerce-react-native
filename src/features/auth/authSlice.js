@@ -9,7 +9,7 @@ export const authSlice = createSlice({
 			imageCamera: null,
 			localId: null,
 			profileImage: null,
-			location: { latitude: null, address: null },
+			location: { latitude: null, longitude: null, address: null },
 		},
 	},
 	reducers: {
@@ -17,7 +17,7 @@ export const authSlice = createSlice({
 			state.value = {
 				user: action.payload.data.email,
 				token: action.payload.data.idToken,
-				localId: action.payload.localId,
+				localId: action.payload.data.localId,
 			};
 		},
 		clearUser: (state) => (state.value = { user: null, token: null }),

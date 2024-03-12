@@ -80,7 +80,7 @@ const TabNavigator = () => {
 							<View style={styles.tabContainer}>
 								<Ionicons
 									name="person-circle-outline"
-									size={30}
+									size={24}
 									color={focused ? "black" : "grey"}
 								/>
 								<Text style={{ color: focused ? "black" : "grey" }}>

@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { View, FlatList, Text, StyleSheet, Pressable } from "react-native";
+import {
+	View,
+	FlatList,
+	Text,
+	StyleSheet,
+	Pressable,
+	ActivityIndicator,
+} from "react-native";
 import ProductItem from "../components/ProductItem";
 import Search from "../components/Search";
 import { colors } from "../global/color";
@@ -31,14 +38,24 @@ function ItemListCategories({ navigation }) {
 
 	return (
 		<View style={styles.container}>
-			<Search onSearch={setKeyword} />
-			<FlatList
-				data={products}
-				renderItem={({ item }) => (
-					<ProductItem product={item} navigation={navigation} />
-				)}
-				keyExtractor={(item) => item.id}
-			/>
+			{isLoading ? (
+				<View
+					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+				>
+					<ActivityIndicator size={"large"} />
+				</View>
+			) : (
+				<>
+					<Search onSearch={setKeyword} />
+					<FlatList
+						data={products}
+						renderItem={({ item }) => (
+							<ProductItem product={item} navigation={navigation} />
+						)}
+						keyExtractor={(item) => item.id}
+					/>
+				</>
+			)}
 		</View>
 	);
 }
