@@ -8,8 +8,9 @@ import {
 	useGetProfileImageQuery,
 	useGetUserLocationQuery,
 } from "../services/shopServices";
-import { setProfileImage } from "../features/auth/authSlice";
+import { setProfileImage, setUser } from "../features/auth/authSlice";
 import { setUserLocation } from "../features/auth/authSlice";
+import { fetchSession } from "../db";
 
 const MainNavigator = () => {
 	const { user, localId } = useSelector((state) => state.authReducer.value);
@@ -17,6 +18,21 @@ const MainNavigator = () => {
 	const { data: location } = useGetUserLocationQuery(localId);
 
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		(async () => {
+			try {
+				const session = await fetchSession();
+				console.log(session, "mi session");
+				if (session?.rows.length) {
+					const user = session.rows._array[0];
+					dispatch(setUser({ user }));
+				}
+			} catch (err) {
+				console.log(err.message);
+			}
+		})();
+	}, []);
 
 	useEffect(() => {
 		if (data) {

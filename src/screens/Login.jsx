@@ -13,6 +13,7 @@ import { useLoginMutation } from "../services/authServices";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/auth/authSlice";
 import { loginSchema } from "../validations/loginSchema";
+import { insertSession } from "../db";
 
 const Login = ({ navigation }) => {
 	const [email, setEmail] = useState("");
@@ -27,6 +28,13 @@ const Login = ({ navigation }) => {
 	useEffect(() => {
 		if (result.data) {
 			dispatch(setUser(result));
+			insertSession({
+				email: result.data.email,
+				localId: result.data.localId,
+				token: result.data.idToken,
+			})
+				.then((data) => console.log(data))
+				.catch((err) => console.log(err));
 		}
 		if (result.error) {
 			if (result.error.data?.error.code == 400) {
