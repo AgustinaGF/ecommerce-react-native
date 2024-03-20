@@ -23,13 +23,13 @@ const MainNavigator = () => {
 		(async () => {
 			try {
 				const session = await fetchSession();
-				console.log(session, "mi session");
 				if (session?.rows.length) {
 					const user = session.rows._array[0];
-					dispatch(setUser({ user }));
+
+					dispatch(setUser(user));
 				}
-			} catch (err) {
-				console.log(err.message);
+			} catch (error) {
+				console.log(error.message, "err");
 			}
 		})();
 	}, []);

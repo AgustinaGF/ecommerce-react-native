@@ -12,7 +12,6 @@ function Header({ title }) {
 	const onLogout = async () => {
 		dispatch(logout());
 		const deletedSession = await deleteSession({ localId });
-		console.log(deletedSession, "test");
 	};
 
 	return (

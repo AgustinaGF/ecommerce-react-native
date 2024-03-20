@@ -14,7 +14,7 @@ const MyLocation = ({ navigation }) => {
 			style={styles.container}
 			onPress={() => navigation.navigate("Location Selector")}
 		>
-			<Text style={styles.text}>{location.address}</Text>
+			<Text style={styles.text}>{location?.address}</Text>
 			<FontAwesome name="map" size={24} style={{ color: "white" }} />
 		</Pressable>
 	);

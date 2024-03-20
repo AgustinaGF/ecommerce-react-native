@@ -27,18 +27,18 @@ const Login = ({ navigation }) => {
 
 	useEffect(() => {
 		if (result.data) {
-			dispatch(setUser(result));
+			dispatch(setUser(result.data));
 			insertSession({
 				email: result.data.email,
 				localId: result.data.localId,
 				token: result.data.idToken,
 			})
-				.then((data) => console.log(data))
-				.catch((err) => console.log(err));
-		}
-		if (result.error) {
-			if (result.error.data?.error.code == 400) {
-				setNotLogger("incorrect username or password");
+				.then((result) => console.log(result))
+				.catch((err) => console.log(err.message));
+			if (result.error) {
+				if (result.error.data?.error.code == 400) {
+					setNotLogger("incorrect username or password");
+				}
 			}
 		}
 	}, [result]);
@@ -46,10 +46,7 @@ const Login = ({ navigation }) => {
 	const onSubmit = () => {
 		setNotLogger("");
 		try {
-			loginSchema.validateSync({
-				email,
-				password,
-			});
+			loginSchema.validateSync({ password, email });
 			triggerSignin({ email, password });
 		} catch (err) {
 			switch (err.path) {

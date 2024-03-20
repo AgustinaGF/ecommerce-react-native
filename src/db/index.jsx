@@ -6,11 +6,9 @@ export const init = () => {
 	const promise = new Promise((resolve, reject) => {
 		db.transaction((tx) => {
 			tx.executeSql(
-				"CREATE TABLE IF NOT EXISTS sessions (localId TEXTPRIMARY KEY NOT NULL, email TEXT NOT NULL,token TEXT NOT NULL);",
+				"CREATE TABLE IF NOT EXISTS sessions (localId TEXT PRIMARY KEY NOT NULL, email TEXT NOT NULL, token TEXT NOT NULL)",
 				[],
-				() => {
-					resolve();
-				},
+				() => resolve(),
 				(_, error) => {
 					reject(error);
 				}
@@ -20,18 +18,14 @@ export const init = () => {
 	return promise;
 };
 
-export const insertSession = ({ localId, email, token }) => {
-	const promise = new Promise((resolve, reject) => {
+export const insertSession = ({ email, localId, token }) => {
+	const promise = new Promise((accept, reject) => {
 		db.transaction((tx) => {
 			tx.executeSql(
-				"INSERT INTO sessions (localId, email, token) VALUES (?, ?, ?);",
-				[localId, email, token],
-				() => {
-					resolve();
-				},
-				(_, error) => {
-					reject(error);
-				}
+				"INSERT INTO sessions (email, localId, token) VALUES (?, ?, ?);",
+				[email, localId, token],
+				(_, result) => accept(result),
+				(_, error) => reject(error)
 			);
 		});
 	});
@@ -42,14 +36,10 @@ export const fetchSession = () => {
 	const promise = new Promise((resolve, reject) => {
 		db.transaction((tx) => {
 			tx.executeSql(
-				"SELECT * FROM sessions;",
+				"SELECT * FROM sessions",
 				[],
-				(_, result) => {
-					resolve(result);
-				},
-				(_, error) => {
-					reject(error);
-				}
+				(_, result) => resolve(result),
+				(_, error) => reject(error)
 			);
 		});
 	});
@@ -62,10 +52,11 @@ export const deleteSession = ({ localId }) => {
 			tx.executeSql(
 				"DELETE FROM sessions WHERE localId = ?",
 				[localId],
-				() => (_, result) => resolve(result),
+				(_, result) => resolve(result),
 				(_, error) => reject(error)
 			);
 		});
 	});
+
 	return promise;
 };
