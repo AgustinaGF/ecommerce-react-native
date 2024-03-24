@@ -1,15 +1,37 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	View,
+	FlatList,
+	ActivityIndicator,
+} from "react-native";
 import React from "react";
-import orders from "../data/orders.json";
 import OrderItem from "../components/OrderItem";
 import { colors } from "../global/color";
+import { useSelector } from "react-redux";
+import { useGetOrdersQuery } from "../services/shopServices";
 
 const Orders = () => {
+	const { data: orders, isLoading, error } = useGetOrdersQuery();
+
+	const ordersObject = orders || {};
+
+	const ordersList = Object.keys(ordersObject).map((key) => ({
+		id: key,
+		...ordersObject[key],
+	}));
+
 	return (
 		<View style={styles.container}>
-			{orders.length > 0 ? (
+			{isLoading ? (
+				<View
+					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+				>
+					<ActivityIndicator size={"large"} />
+				</View>
+			) : ordersList.length > 0 ? (
 				<FlatList
-					data={orders}
+					data={ordersList}
 					renderItem={({ item }) => <OrderItem item={item} />}
 					keyExtractor={(order) => order.id}
 				/>
