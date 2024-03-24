@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
-import allCartItems from "../data/cart.json";
-
+import { colors } from "../global/color";
 import CartItem from "../components/CartItem";
 import { usePostOrderMutation } from "../services/shopServices";
 import { useSelector } from "react-redux";
@@ -16,25 +15,98 @@ export default function Cart() {
 		triggerPost({ total, cartItems, user: "logged" });
 	};
 
+	const deleteCart = () => {
+		console.log("eliminar");
+		// triggerPost({ total, cartItems, user: "logged" });
+	};
 	return (
-		<View>
+		<View style={styles.container}>
 			{cartItems.length > 0 ? (
 				<>
-					<FlatList
-						data={cartItems}
-						renderItem={({ item }) => <CartItem item={item} />}
-						keyExtractor={(cartItem) => cartItem.id}
-					/>
-					<Text>Total:${total}</Text>
-					<Pressable onPress={confirmCart}>
-						<Text>Confirm</Text>
-					</Pressable>
+					<View style={styles.cartItem}>
+						<FlatList
+							data={cartItems}
+							renderItem={({ item }) => <CartItem item={item} />}
+							keyExtractor={(cartItem) => cartItem.id}
+							style={styles.flat}
+						/>
+						<Text style={styles.total}>Total:${total}</Text>
+						<View style={styles.buttonContainer}>
+							<Pressable onPress={confirmCart} style={styles.confirmCart}>
+								<Text style={styles.buttonText}>Confirm</Text>
+							</Pressable>
+							<Pressable onPress={deleteCart} style={styles.deleteCart}>
+								<Text style={styles.buttonText}>Delete</Text>
+							</Pressable>
+						</View>
+					</View>
 				</>
 			) : (
-				<Text>No hay Productos Agregados</Text>
+				<View style={styles.notProductContainer}>
+					<Text style={styles.notProduct}>No hay Productos Agregados</Text>
+				</View>
 			)}
 		</View>
 	);
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		width: "100%",
+
+		paddingHorizontal: 20,
+		backgroundColor: colors.color_2,
+	},
+	cartItem: {
+		// marginHorizontal: 30,
+		marginVertical: 20,
+		padding: 10,
+		justifyContent: "space-between",
+		alignItems: "center",
+		backgroundColor: colors.color_5,
+		borderRadius: 10,
+	},
+	buttonContainer: {
+		flexDirection: "row",
+		justifyContent: "space-around",
+		width: "100%",
+		marginTop: 8,
+	},
+	confirmCart: {
+		padding: 10,
+		borderRadius: 6,
+		backgroundColor: colors.color_7,
+	},
+	deleteCart: {
+		padding: 10,
+		borderRadius: 6,
+		backgroundColor: colors.color_7,
+	},
+	buttonText: {
+		fontFamily: "InterBold",
+		fontSize: 14,
+		color: "white",
+	},
+	total: {
+		fontFamily: "InterBold",
+		fontSize: 18,
+		color: "white",
+		marginBottom: 10,
+		marginTop: 20,
+	},
+	notProductContainer: {
+		marginVertical: 20,
+		padding: 10,
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: colors.color_1,
+		borderRadius: 10,
+	},
+	notProduct: {
+		flexDirection: "row",
+		fontFamily: "InterBold",
+		fontSize: 18,
+		color: "white",
+	},
+});
