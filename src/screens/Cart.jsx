@@ -1,23 +1,47 @@
-import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	View,
+	FlatList,
+	Pressable,
+	Alert,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { colors } from "../global/color";
 import CartItem from "../components/CartItem";
 import { usePostOrderMutation } from "../services/shopServices";
 import { useSelector } from "react-redux";
+import { clearCart } from "../features/shop/cartSlice";
+import { useDispatch } from "react-redux";
 
-export default function Cart() {
+export default function Cart({ navigation }) {
 	const cartItems = useSelector((state) => state.cartReducer.value.items);
-
 	const total = useSelector((state) => state.cartReducer.value.total);
+	const date = new Date().toLocaleString();
+	const dispatch = useDispatch();
+	const { user } = useSelector((state) => state.authReducer.value);
 
 	const [triggerPost, result] = usePostOrderMutation();
 	const confirmCart = () => {
-		triggerPost({ total, cartItems, user: "logged" });
+		triggerPost({ total, cartItems, date, user: user });
+		dispatch(clearCart());
+		Alert.alert(
+			"Order successfuly placed",
+			"Order successfuly placed"[
+				{
+					text: "OK",
+					onPress: () => navigation.navigate("Orders"),
+				}
+			]
+		);
 	};
 
 	const deleteCart = () => {
-		console.log("eliminar");
-		// triggerPost({ total, cartItems, user: "logged" });
+		dispatch(clearCart());
+		Alert.alert(
+			"Order deleted",
+			"Order deleted"[{ text: "OK", onPress: () => console.log("OK Pressed") }]
+		);
 	};
 	return (
 		<View style={styles.container}>
