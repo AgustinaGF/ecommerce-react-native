@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
-import allProducts from "../data/products.json";
 import { colors } from "../global/color";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/shop/cartSlice";
+import { useGetProductsQuery } from "../services/shopServices";
 
 const ItemDetail = ({ navigation, route }) => {
 	const [product, setProduct] = useState(null);
@@ -14,6 +14,8 @@ const ItemDetail = ({ navigation, route }) => {
 	const onAddCart = () => {
 		dispatch(addItem({ ...product, quantity: 1 }));
 	};
+
+	const { data: allProducts, isLoading, error } = useGetProductsQuery();
 
 	useEffect(() => {
 		const productFinded = allProducts.find((product) => product.id === id);

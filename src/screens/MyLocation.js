@@ -8,7 +8,6 @@ import { useGetUserLocationQuery } from "../services/shopServices";
 const MyLocation = ({ navigation }) => {
 	const { user, localId } = useSelector((state) => state.authReducer.value);
 	const { data: location } = useGetUserLocationQuery(localId);
-	console.log(location, localId, "qqqq");
 	return (
 		<Pressable
 			style={styles.container}
