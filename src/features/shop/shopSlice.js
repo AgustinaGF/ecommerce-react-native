@@ -13,11 +13,12 @@ export const shopSlice = createSlice({
 	},
 	reducers: {
 		setCategorySelected: (state, action) => {
-			const { categorySelected, allProducts } = action.payload;
+			const { category, allProducts } = action.payload;
 			const productsFiltered = allProducts.filter(
-				(product) => product.category === categorySelected
+				(product) => product.category === category
 			);
-			state.value.categorySelected = categorySelected;
+
+			state.value.categorySelected = category;
 			state.value.products = allProducts;
 			state.value.productsFilteredByCategory = productsFiltered;
 		},

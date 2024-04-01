@@ -38,7 +38,7 @@ function ItemListCategories({ navigation }) {
 
 	return (
 		<View style={styles.container}>
-			{isLoading || isLoadingProduct ? (
+			{isLoading ? (
 				<View
 					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
 				>
