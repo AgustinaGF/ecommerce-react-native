@@ -6,7 +6,7 @@ import {
 	Pressable,
 	Alert,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { colors } from "../global/color";
 import CartItem from "../components/CartItem";
 import { usePostOrderMutation } from "../services/shopServices";

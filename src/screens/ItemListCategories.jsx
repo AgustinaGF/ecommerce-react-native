@@ -1,12 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-	View,
-	FlatList,
-	Text,
-	StyleSheet,
-	Pressable,
-	ActivityIndicator,
-} from "react-native";
+import { View, FlatList, StyleSheet, ActivityIndicator } from "react-native";
 import ProductItem from "../components/ProductItem";
 import Search from "../components/Search";
 import { colors } from "../global/color";

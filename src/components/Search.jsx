@@ -6,16 +6,15 @@ import { Entypo } from "@expo/vector-icons";
 const Search = ({ keyword, onSearch }) => {
 	const [input, setInput] = useState("");
 
-	// handleSearch va a realizar un filtrado de los productos utilizando el valor guardado en "input"
 	const handleSearch = () => {
 		if (input) {
 			onSearch(input);
 		}
 	};
 
-	//funcion que limpia el campo del input
 	const removeInput = () => {
 		setInput("");
+		onSearch("");
 	};
 	return (
 		<View style={styles.container}>
@@ -24,7 +23,7 @@ const Search = ({ keyword, onSearch }) => {
 					onChangeText={onSearch}
 					style={styles.input}
 					value={keyword}
-					placeholder="Buscar Producto"
+					placeholder="Search Product"
 				/>
 				<Pressable onPress={handleSearch}>
 					<AntDesign name="search1" size={25} color="black" />

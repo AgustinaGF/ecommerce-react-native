@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Cart from "../screens/Cart";
@@ -16,5 +16,3 @@ export default function CartStack() {
 		</Stack.Navigator>
 	);
 }
-
-const styles = StyleSheet.create({});

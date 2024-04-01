@@ -5,7 +5,7 @@ import {
 	FlatList,
 	ActivityIndicator,
 } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import OrderItem from "../components/OrderItem";
 import { colors } from "../global/color";
 import { useGetOrdersQuery } from "../services/shopServices";

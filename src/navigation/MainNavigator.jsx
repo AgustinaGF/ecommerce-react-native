@@ -1,5 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import TabNavigator from "./TabNavigator";
 import AuthStack from "./AuthStack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -51,5 +50,3 @@ const MainNavigator = () => {
 };
 
 export default MainNavigator;
-
-const styles = StyleSheet.create({});

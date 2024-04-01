@@ -14,8 +14,6 @@ import { setUser } from "../features/auth/authSlice";
 import { signupSchema } from "../validations/signupSchema";
 import { colors } from "../global/color";
 
-// 1.16
-
 const Signup = ({ navigation }) => {
 	const dispatch = useDispatch();
 
