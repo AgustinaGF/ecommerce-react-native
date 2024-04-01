@@ -1,26 +1,44 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import {
-	increment,
-	decrement,
-	incrementByAmount,
-	reset,
-} from "../features/counter/counterSlice";
+import { increment, decrement, reset } from "../features/counter/counterSlice";
 import { useDispatch, useSelector } from "react-redux";
-
-const Counter = () => {
+import { AntDesign } from "@expo/vector-icons";
+import { colors } from "../global/color";
+const Counter = ({ stock, onChangeQuantity }) => {
 	const count = useSelector((state) => state.counterReducer.value);
 
 	const dispatch = useDispatch();
 
+	const handleDecrement = () => {
+		if (count >= 1) {
+			dispatch(decrement());
+			onChangeQuantity(count - 1);
+		}
+	};
+
+	const handleIncrement = () => {
+		if (count < stock) {
+			dispatch(increment());
+			onChangeQuantity(count + 1);
+		}
+	};
+
+	const handleReset = () => {
+		dispatch(reset());
+		onChangeQuantity(0);
+	};
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.buttonsContainer}>
-				<Pressable onPress={() => dispatch(decrement())} style={styles.button}>
+				<Pressable onPress={handleDecrement} style={styles.button}>
 					<Text style={styles.buttonText}>-</Text>
 				</Pressable>
 				<Text>{count}</Text>
-				<Pressable onPress={() => dispatch(increment())} style={styles.button}>
+				<Pressable onPress={handleIncrement} style={styles.button}>
 					<Text style={styles.buttonText}>+</Text>
+				</Pressable>
+				<Pressable onPress={handleReset} style={styles.button}>
+					<AntDesign name="delete" size={24} color={colors.color_1} />
 				</Pressable>
 			</View>
 		</View>
@@ -31,36 +49,20 @@ export default Counter;
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
 		width: "100%",
-		padding: 10,
 	},
 	buttonsContainer: {
 		flexDirection: "row",
-		justifyContent: "center",
+		justifyContent: "flex-end",
 		alignItems: "center",
 		width: "100%",
 		marginBottom: 10,
 	},
 	button: {
 		padding: 10,
-		backgroundColor: "gray",
-	},
-	span: {
-		width: "43%",
-		padding: 10,
-		textAlign: "center",
-		fontSize: 20,
-		fontFamily: "InterRegular",
-	},
-	spanInput: {
-		width: "43%",
-		padding: 10,
-		textAlign: "center",
-		fontSize: 16,
-		fontFamily: "InterRegular",
+		backgroundColor: colors.color_4,
+		marginLeft: 2,
+		marginRight: 2,
 	},
 	buttonText: {
 		fontSize: 18,

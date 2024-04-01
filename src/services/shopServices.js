@@ -4,6 +4,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const shopApi = createApi({
 	reducerPath: "shopApi",
 	baseQuery: fetchBaseQuery({ baseUrl: base_url }),
+	tagTypes: ["getOrders"],
 	endpoints: (builder) => ({
 		getProducts: builder.query({
 			query: () => "products.json",
@@ -21,9 +22,11 @@ export const shopApi = createApi({
 				method: "POST",
 				body: order,
 			}),
+			invalidatesTags: ["getOrders"],
 		}),
 		getOrders: builder.query({
 			query: () => "orders.json",
+			providesTags: ["getOrders"],
 		}),
 		getProfileImage: builder.query({
 			query: (localId) => `profileImages/${localId}.json`,

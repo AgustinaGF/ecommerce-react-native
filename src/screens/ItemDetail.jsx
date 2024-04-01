@@ -1,18 +1,37 @@
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	View,
+	Image,
+	Pressable,
+	ScrollView,
+	ActivityIndicator,
+	Alert,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { colors } from "../global/color";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/shop/cartSlice";
 import { useGetProductsQuery } from "../services/shopServices";
+import Counter from "../components/Counter";
 
 const ItemDetail = ({ navigation, route }) => {
 	const [product, setProduct] = useState(null);
+	const [quantity, setQuantity] = useState(0);
 	const { id } = route.params;
 
 	const dispatch = useDispatch();
 
 	const onAddCart = () => {
-		dispatch(addItem({ ...product, quantity: 1 }));
+		dispatch(addItem({ ...product, quantity: quantity }));
+		Alert.alert(
+			"Item has been added to the cart",
+			"Item has been added to the cart"[
+				{
+					text: "OK",
+				}
+			]
+		);
 	};
 
 	const { data: allProducts, isLoading, error } = useGetProductsQuery();
@@ -23,49 +42,54 @@ const ItemDetail = ({ navigation, route }) => {
 	}, [id]);
 
 	return (
-		<View style={styles.main}>
-			{product ? (
+		<>
+			{!isLoading && product ? (
 				<View style={styles.container}>
-					<Image
-						source={{ uri: product.images[0] }}
-						style={styles.image}
-						resizeMode="cover"
-					/>
-					<View style={styles.textContainer}>
-						<Text style={styles.descriptionText}>{product.title}</Text>
-						<Text style={styles.descriptionText}>{product.description}</Text>
-						<Text style={styles.descriptionTextPrice}>${product.price}</Text>
-						<Pressable style={styles.buy} onPress={onAddCart}>
-							<Text style={styles.buyText}>Add to cart</Text>
-						</Pressable>
-					</View>
+					<ScrollView>
+						<Image
+							source={{ uri: product.images[0] }}
+							style={styles.image}
+							resizeMode="cover"
+						/>
+						<View style={styles.textContainer}>
+							<Text style={styles.title}>{product.title}</Text>
+							<Text style={styles.descriptionText}>{product.description}</Text>
+							<Text style={styles.descriptionTextPrice}>${product.price}</Text>
+							<Counter stock={product.stock} onChangeQuantity={setQuantity} />
+							<Pressable
+								style={[quantity > 0 ? styles.buy : styles.disabledButton]}
+								onPress={onAddCart}
+								disabled={quantity === 0}
+							>
+								<Text style={styles.buyText}>Add to cart</Text>
+							</Pressable>
+						</View>
+					</ScrollView>
 				</View>
 			) : (
-				<View>
-					<Text>Cargando...</Text>
+				<View
+					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+				>
+					<ActivityIndicator size={"large"} />
 				</View>
 			)}
-		</View>
+		</>
 	);
 };
 
 export default ItemDetail;
 
 const styles = StyleSheet.create({
-	main: {
-		flex: 1,
-		width: "100%",
-	},
 	container: {
+		flex: 1,
 		flexDirection: "column",
 		justifyContent: "flex-start",
 		alignItems: "center",
-		height: "100%",
 		backgroundColor: colors.color_2,
 	},
 	image: {
 		width: "100%",
-		height: 400,
+		height: 300,
 		marginVertical: 15,
 	},
 	title: {
@@ -108,5 +132,11 @@ const styles = StyleSheet.create({
 		fontFamily: "InterBold",
 		fontSize: 22,
 		color: "white",
+	},
+	disabledButton: {
+		opacity: 0.9,
+		borderRadius: 6,
+		borderWidth: 1,
+		padding: 10,
 	},
 });

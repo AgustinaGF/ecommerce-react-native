@@ -1,10 +1,4 @@
-import {
-	Pressable,
-	StyleSheet,
-	Text,
-	View,
-	ActivityIndicator,
-} from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import Card from "./Card";
 import { colors } from "../global/color";
 import { useDispatch } from "react-redux";

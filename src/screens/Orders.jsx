@@ -5,10 +5,9 @@ import {
 	FlatList,
 	ActivityIndicator,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import OrderItem from "../components/OrderItem";
 import { colors } from "../global/color";
-import { useSelector } from "react-redux";
 import { useGetOrdersQuery } from "../services/shopServices";
 
 const Orders = () => {
