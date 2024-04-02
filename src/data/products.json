@@ -197,7 +197,7 @@
 	{
 		"id": 14,
 		"brand": "Vintage Vogue",
-		"category": "Accessories",
+		"category": "Handbags",
 		"description": "A classic vintage handbag to complement any outfit.",
 		"discountPercentage": 16.25,
 		"images": [
@@ -317,7 +317,7 @@
 	{
 		"id": 22,
 		"brand": "Vintage Vogue",
-		"category": "Accessories",
+		"category": "Handbags",
 		"description": "A classic vintage handbag to complement any outfit.",
 		"discountPercentage": 10.5,
 		"images": [
@@ -332,7 +332,7 @@
 	{
 		"id": 23,
 		"brand": "Retro Luxe",
-		"category": "Home Decor",
+		"category": "Chandeliers",
 		"description": "A luxurious vintage-inspired chandelier to add elegance to your space.",
 		"discountPercentage": 15.25,
 		"images": [
@@ -497,7 +497,7 @@
 	{
 		"id": 34,
 		"brand": "Vintage Vogue",
-		"category": "Accessories",
+		"category": "Handbags",
 		"description": "A classic vintage handbag to complement any outfit.",
 		"discountPercentage": 14.5,
 		"images": [
@@ -512,16 +512,16 @@
 	{
 		"id": 35,
 		"brand": "Retro Relics",
-		"category": "Home Decor",
+		"category": "Telephones",
 		"description": "A retro-style telephone to add a nostalgic touch to your home.",
 		"discountPercentage": 16.25,
 		"images": [
-			"2wCEAAoHCBQUFBcUFBUYGBcZFxgcGxkaGhwZGRwbIRcaGRoaGBcbIiwjHCErHRgcJDUkKy0xMjIzGSI4PTgxPCwxNC8BCwsLDw4PHRERHTEoIigvMzMxMTEvMTExMzE0MTExMzEzMTExOjExMTExMTExMTExMzMxMTExMTExMTExMTExMf"
+			"https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQAIRs8yfVVQUe-V0uDIDOUJgWsgBmVRhsnj_zAxjMGQThlp65fbzIVV5Ub6i1RLBbCM5EwoOQwbW9j-GCTEf_U5eshce5p4Q496aoNscj5&usqp=CAc"
 		],
 		"price": 79.99,
 		"rating": 4.8,
 		"stock": 4,
-		"thumbnail": "2wCEAAoHCBQUFBcUFBUYGBcZFxgcGxkaGhwZGRwbIRcaGRoaGBcbIiwjHCErHRgcJDUkKy0xMjIzGSI4PTgxPCwxNC8BCwsLDw4PHRERHTEoIigvMzMxMTEvMTExMzE0MTExMzEzMTExOjExMTExMTExMTExMzMxMTExMTExMTExMTExMf",
+		"thumbnail": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQAIRs8yfVVQUe-V0uDIDOUJgWsgBmVRhsnj_zAxjMGQThlp65fbzIVV5Ub6i1RLBbCM5EwoOQwbW9j-GCTEf_U5eshce5p4Q496aoNscj5&usqp=CAc",
 		"title": "Retro Telephone"
 	},
 	{
@@ -617,7 +617,7 @@
 	{
 		"id": 42,
 		"brand": "Vintage Vogue",
-		"category": "Accessories",
+		"category": "Watches",
 		"description": "A classic vintage watch to add sophistication to your wrist.",
 		"discountPercentage": 19.5,
 		"images": [
@@ -632,7 +632,7 @@
 	{
 		"id": 43,
 		"brand": "Retro Revival",
-		"category": "Fashion",
+		"category": "Skirts",
 		"description": "A retro-style skirt perfect for a vintage-inspired look.",
 		"discountPercentage": 12.5,
 		"images": [
@@ -722,7 +722,7 @@
 	{
 		"id": 49,
 		"brand": "Retro Luxe",
-		"category": "Home Decor",
+		"category": "Chandeliers",
 		"description": "A luxurious vintage-inspired chandelier to add elegance to your space.",
 		"discountPercentage": 18.5,
 		"images": [
