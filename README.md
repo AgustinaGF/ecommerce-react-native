@@ -48,10 +48,11 @@
 
 ### - Podes Loguearte y desloguearte
 
-## Preview
 
-<img src="https://i.ibb.co/3MzTKnX/Project.png" alt="Texto alternativo" width="400" height="300">
+## :iphone: :iphone: Preview :iphone: :iphone:
 
+
+<img src="https://imgbb.host/images/QlyRE.png" alt="Texto alternativo" width="600" >
 
 ## Tecnologías Utilizadas
 
