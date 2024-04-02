@@ -20,33 +20,35 @@
 
 ### Pasos para probar el proyecto
 
-### - Podes registrarte con un usuario en la pantalla de SignUp
+ - Podes registrarte con un usuario en la pantalla de SignUp
 
-### - Si ya tenes usuario podes loguearte desde la seccion Login 
+ - Si ya tenes usuario podes loguearte desde la seccion Login 
 
-### - Una vez que ya estes logueado podras acceder a la pantalla Categories donde vas a ver a encontrar las distintas categorias de los productos.
+  - Una vez que ya estes logueado podras acceder a la pantalla Categories donde vas a ver a encontrar las distintas 
+    categorias de los productos.
 
-### - Realizar alguna búsqueda de producto por categoria, para esto introduce alguna búsqueda y dale click al boton Search, si existe alguna coincidencia te devolvera un producto.
+  - Realizar alguna búsqueda de producto por categoria, para esto introduce alguna búsqueda y dale click al boton 
+    Search, si existe alguna coincidencia te devolvera un producto.
 
-###  - Podras agregar productos a tu carrito
+  - Podras agregar productos a tu carrito
 
-###  - Confirmar o eliminar los productos agregados al carrito
+  - Confirmar o eliminar los productos agregados al carrito
 
-###  - En la pantalla Orders podras ver las ordenes ya confirmadas
+   - En la pantalla Orders podras ver las ordenes ya confirmadas
 
-###  - Tendras un perfil con la foto que decidas cargar
+   - Tendras un perfil con la foto que decidas cargar
 
 ### Acciones que podes realizar como Usuario
 
-### - Podes registrarte
+  - Podés registrarte
 
-### - Podes cambiar tu foto de perfil
+  - Podés cambiar tu foto de perfil
 
-### - Podes agregar o eliminar productos de tu carrito
+  - Podés agregar o eliminar productos de tu carrito
 
-### - Realizar ordenes
+  - Realizar ordenes
 
-### - Podes Loguearte y desloguearte
+  - Pódes Loguearte y desloguearte
 
 
 ## :iphone: :iphone: Preview :iphone: :iphone:
